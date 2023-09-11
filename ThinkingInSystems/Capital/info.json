@@ -1,0 +1,12 @@
+{
+    "frame_format_version": "2023.9",
+    "metamodel": "Flows",
+
+    "metadata": {
+        "name": "capital",
+        "title": "Economic capital with its reinforcing growth loop constrained by a renewable resource",
+        "author": "Stefan Urbanek",
+        "origin": "Thinking in Systems, Figure 42-45",
+        "original_author": "Donella Meadows",
+    },
+}

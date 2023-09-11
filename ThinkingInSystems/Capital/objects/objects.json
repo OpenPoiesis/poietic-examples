@@ -1,0 +1,100 @@
+[
+    {
+        "type": "Auxiliary",
+        "name": "profit",
+        "attributes": {
+            "formula": "(price * harvest) - capital"
+        }
+    },
+    {
+        "type": "Auxiliary",
+        "name": "growth_goal",
+        "attributes": {
+            "formula": "capital * 0.1"
+        }
+    },
+    {
+        "type": "Auxiliary",
+        "name": "capital_lifetime",
+        "attributes": {
+            "formula": "20"
+        }
+    },
+    {
+        "type": "Stock",
+        "name": "resource",
+        "attributes": {
+            "formula": "1000"
+        }
+    },
+    {
+        "type": "Flow",
+        "name": "regeneration",
+        "attributes": {
+            "formula": "resource * regeneration_rate"
+        },
+    },
+    { "type": "Fills",     "from": "regeneration", "to": "resource" },
+    {
+        "type": "Flow",
+        "name": "harvest",
+        "attributes": {
+            "formula": "capital * yield"
+        },
+    },
+    { "type": "Drains",    "from": "resource",     "to": "harvest" },
+    {
+        "type": "Stock",
+        "name": "capital",
+        "attributes": {
+            "formula": "5"
+        }
+    },
+    {
+        "type": "Flow",
+        "name": "depreciation",
+        "attributes": {
+            "formula": "capital / capital_lifetime"
+        }
+    },
+    { "type": "Drains",    "from": "capital",     "to": "depreciation" },
+
+    {
+        "type": "Flow",
+        "name": "investment",
+        "attributes": {
+            "formula": "min(profit, growth_goal)"
+        },
+    },
+    { "type": "Fills",     "from": "investment",   "to": "capital" },
+    {
+        "type": "GraphicalFunction",
+        "name": "yield",
+        "attributes": {
+            "points": [[0,0.01],[50,0.01],[100,0.02],[150,0.03],[200,0.04],[250,0.06],[300,0.08],
+                [350,0.12],[400,0.17],[450,0.23],[500,0.31],[550,0.40],[600,0.50],
+                [650,0.60],[700,0.69],[750,0.77],[800,0.83],[850,0.88],[900,0.92],
+                [950,0.94],[1000,0.96]]
+        }
+    },
+    { "type": "Parameter", "from": "resource",     "to": "yield" },
+    {
+        "type": "GraphicalFunction",
+        "name": "price",
+        "attributes": {
+            "points": [[0,10.00],[0.1,7.12],[0.2,5.33],[0.3,4.14],[0.4,3.30],[0.5,2.70],[0.6,2.25],
+                [0.7,1.90],[0.8,1.63],[0.9,1.41],[1,1.23]]
+        }
+    },
+    { "type": "Parameter", "from": "yield",        "to": "price" },
+    {
+        "type": "GraphicalFunction",
+        "name": "regeneration_rate",
+        "attributes": {
+            "points": [[0,0.00],[50,0.01],[100,0.01],[150,0.03],[200,0.07],[250,0.12],[300,0.21],
+                [350,0.30],[400,0.40],[450,0.47],[500,0.50],[550,0.47],[600,0.40],[650,0.30],
+                [700,0.21],[750,0.12],[800,0.07],[850,0.03],[900,0.01],[950,0.01],[1000,0.00]]
+        }
+    },
+    { "type": "Parameter", "from": "resource",     "to": "regeneration_rate" }
+]

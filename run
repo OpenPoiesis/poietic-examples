@@ -1,0 +1,96 @@
+#!/bin/bash
+#
+# Script to run the demo designs in this repository.
+#
+# Usage:
+#
+# ./run PATH_TO_POIETIC_FRAME
+#
+# Uses the following environment variables:
+# 
+# POIETIC - path to the poietic executable, if not found in PATH (required)
+# GNUPLOT - path to gnuplot (used if installed)
+# OUTPUT - path to the output directory, default: ./out
+# 
+
+set -e
+
+# -----------------------------------------------------------------------------------
+# Some internal config, you might skip this to the next section ...
+
+# Path to the poietic tool.
+#
+# If this demo project directory share the same parent directory as the Poietic Core,
+# then make sure that the tool has been built and run this command using:
+#
+# POIETIC=../PoieticCore/.build/debug/poietic ./run PATH_TO_BUDNLE.poieticframe
+# 
+POIETIC="${POIETIC:-poietic}"
+
+# Path to gnuplot
+GNUPLOT="${GNUPLOT:-gnuplot}"
+
+# Path to the output directory, default ./out
+OUTPUT_DIR="${OUTPUT:-./out}"
+
+if ! command -v ${POIETIC} &> /dev/null
+then
+	echo "Poietic command '${TOOL}' not found. Set POIETIC environment variable with a valid executable path." 1>&2
+	exit 1
+fi
+
+if [ -z "$1" ] ; then
+    echo "Please specify a path to the poietic frame bundle (*.poieticframe)."
+    exit 1
+fi
+
+FRAME_BUNDLE=$1
+
+if [ ! -d "${FRAME_BUNDLE}" ] ; then
+	echo "${FRAME_BUNDLE} directory does not exist." 1>&2
+	exit 1
+fi
+
+if [ ! -f "${FRAME_BUNDLE}/info.json" ] ; then
+	echo "${FRAME_BUNDLE} does not seem to be a frame bundle (missing 'info.json')." 1>&2
+	exit 1
+fi
+#
+# -----------------------------------------------------------------------------------
+
+# -----------------------------------------------------------------------------------
+# Prepare the database and run the example
+# -----------------------------------------------------------------------------------
+
+# Alias the poietic tool, if we do not have it in PATH
+mkdir -p "${OUTPUT_DIR}"
+
+# Path to the database.
+export POIETIC_DESIGN="${OUTPUT_DIR}/database.poietic"
+
+# Create a new empty database.
+${POIETIC} new
+
+# Import a model frame into the database.
+${POIETIC} import $FRAME_BUNDLE
+
+# Auto-connect parameter nodes.
+${POIETIC} edit auto-parameters
+
+# Run the model and generate output into the ./out directory.
+${POIETIC} run --steps 150 -f gnuplot -o ${OUTPUT_DIR}
+
+
+if command -v ${GNUPLOT} &> /dev/null
+then
+	# Create charts using gnuplot.
+	cd ${OUTPUT_DIR}
+	gnuplot *.gnuplot
+	echo "Charts created in ${OUTPUT_DIR}"
+else
+	echo "NOTE: Gnuplot not found, chart images not created." 1>&2
+	echo "HINT: Install package 'gnupot' using your system's package manager." 1>&2
+	echo "HINT: On a mac, run: brew install gnuplot" 1>&2
+fi
+echo "Output from '${FRAME_BUNDLE}' created in ${OUTPUT_DIR}"
+

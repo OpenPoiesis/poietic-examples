@@ -18,7 +18,25 @@ To run a demo, you need the [Poietic Toolkit](https://github.com/OpenPoiesis/Poi
 
 Please refer to a README file included with each folder for more details.
 
-Most of the demos can be run by:
+To run the demos you can use the included `run` command. It requires the `poietic` tool
+executable to exist somewhere. Can be specified explicitly using the `POIETIC` environment
+variable.
+
+To use the `run` command type, for example:
+
+```bash
+./run ThinkingInSystems/Capital.poieticframe
+```
+
+If this demo project directory share the same parent directory as the Poietic Core,
+then make sure that the tool has been built and then use the command like this::
+
+```bash
+export POIETIC=../PoieticCore/.build/debug/poietic
+./run ThinkingInSystems/Capital.poieticframe
+```
+
+### Manual Method
 
 1. Chose a location of your database and store the path in `POIETIC_DESIGN` environment
    variable with: `export POIETIC_DESIGN="demo.poietic"`

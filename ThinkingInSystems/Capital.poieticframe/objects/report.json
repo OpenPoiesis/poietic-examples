@@ -1,0 +1,26 @@
+[
+    {
+        "type": "Chart",
+        "name": "harvest_chart",
+        "attributes": {}
+    },
+    {
+        "type": "ChartSeries", "from": "harvest_chart", "to": "harvest"
+    },
+    {
+        "type": "Chart",
+        "name": "capital_chart",
+        "attributes": {}
+    },
+    {
+        "type": "ChartSeries", "from": "capital_chart", "to": "capital"
+    },
+    {
+        "type": "Chart",
+        "name": "resource_chart",
+        "attributes": {}
+    },
+    {
+        "type": "ChartSeries", "from": "resource_chart", "to": "resource"
+    }
+]

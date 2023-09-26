@@ -1,0 +1,25 @@
+[
+    {
+        "type": "Stock",
+        "name": "kettle",
+        "attributes": {
+            "formula": "1000"
+        }
+    },
+    {
+        "type": "Stock",
+        "name": "cup",
+        "attributes": {
+            "formula": "0"
+        }
+    },
+    {
+        "type": "Flow",
+        "name": "pour",
+        "attributes": {
+            "formula": "100"
+        },
+    },
+    { "type": "Fills",     "from": "pour", "to": "cup" },
+    { "type": "Drains",     "from": "kettle", "to": "pour" }
+]

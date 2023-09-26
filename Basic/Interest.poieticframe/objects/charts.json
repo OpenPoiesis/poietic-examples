@@ -1,0 +1,18 @@
+[
+    {
+        "type": "Chart",
+        "name": "account_chart",
+        "attributes": {}
+    },
+    {
+        "type": "ChartSeries", "from": "account_chart", "to": "account"
+    },
+    {
+        "type": "Chart",
+        "name": "interest_chart",
+        "attributes": {}
+    },
+    {
+        "type": "ChartSeries", "from": "interest_chart", "to": "interest"
+    }
+]

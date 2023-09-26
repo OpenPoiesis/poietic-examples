@@ -1,0 +1,26 @@
+[
+    {
+        "type": "Stock",
+        "name": "account",
+        "attributes": {
+            "formula": "100"
+        }
+    },
+    {
+        "type": "Auxiliary",
+        "name": "rate",
+        "attributes": {
+            "formula": "0.02"
+        }
+    },
+    {
+        "type": "Flow",
+        "name": "interest",
+        "attributes": {
+            "formula": "account * rate"
+        },
+    },
+    { "type": "Fills",     "from": "interest", "to": "account" },
+    { "type": "Parameter", "from": "rate",     "to": "interest" },
+    { "type": "Parameter", "from": "account",  "to": "interest" }
+]

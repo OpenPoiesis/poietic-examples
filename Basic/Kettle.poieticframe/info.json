@@ -1,0 +1,12 @@
+{
+    "frame_format_version": "2023.9",
+    "metamodel": "Flows",
+
+    "collections": [ "objects", "charts" ],
+    
+    "design_info": {
+        "title": "Tea kettle pouring tea",
+        "author": "Stefan Urbanek",
+        "license": "Creative Commons Attribution-ShareAlike 4.0 International License"
+    },
+}

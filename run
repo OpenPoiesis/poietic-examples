@@ -64,6 +64,7 @@ fi
 
 # Alias the poietic tool, if we do not have it in PATH
 mkdir -p "${OUTPUT_DIR}"
+rm "${OUTPUT_DIR}/*.gnuplot" 2> /dev/null && echo "Removed previous gnuplots."
 
 # Path to the database.
 export POIETIC_DESIGN="${OUTPUT_DIR}/database.poietic"
@@ -92,5 +93,5 @@ else
 	echo "HINT: Install package 'gnupot' using your system's package manager." 1>&2
 	echo "HINT: On a mac, run: brew install gnuplot" 1>&2
 fi
-echo "Output from '${FRAME_BUNDLE}' created in ${OUTPUT_DIR}"
+echo "Output from$POI '${FRAME_BUNDLE}' created in ${OUTPUT_DIR}"
 

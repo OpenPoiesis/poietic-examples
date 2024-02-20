@@ -5,7 +5,7 @@
     "collections": [ "objects", "charts" ],
     
     "design_info": {
-        "title": "Bank accound interest",
+        "title": "Bank account interest",
         "author": "Stefan Urbanek",
         "license": "Creative Commons Attribution-ShareAlike 4.0 International License"
     },

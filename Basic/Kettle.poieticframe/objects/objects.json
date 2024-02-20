@@ -18,7 +18,7 @@
         "name": "pour",
         "attributes": {
             "formula": "100"
-        },
+        }
     },
     { "type": "Fills",     "from": "pour", "to": "cup" },
     { "type": "Drains",     "from": "kettle", "to": "pour" }

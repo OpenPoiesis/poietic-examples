@@ -25,5 +25,20 @@
     },
     { "type": "Fills",     "from": "interest", "to": "account" },
     { "type": "Parameter", "from": "rate",     "to": "interest" },
-    { "type": "Parameter", "from": "account",  "to": "interest" }
+    { "type": "Parameter", "from": "account",  "to": "interest" },
+    
+    {
+        "type": "DesignInfo",
+        "attributes": {
+            "title": "Bank Interest",
+        }
+    },
+    {
+        "type": "Simulation",
+        "attributes": {
+            "initial_time": 0.0,
+            "time_delta": 1.0,
+            "steps": 20
+        }
+    }
 ]

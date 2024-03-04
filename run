@@ -9,9 +9,10 @@
 # Uses the following environment variables:
 # 
 # POIETIC - path to the poietic executable, if not found in PATH (required)
-# GNUPLOT - path to gnuplot (used if installed)
+# GNUPLOT - path to gnuplot (optional, used if installed)
+# GRAPHVIZ - path to dot graphviz tool (optional, used if installed)
 # OUTPUT - path to the output directory, default: ./out
-# 
+#
 
 set -e
 
@@ -33,9 +34,16 @@ GNUPLOT="${GNUPLOT:-gnuplot}"
 # Path to the output directory, default ./out
 OUTPUT_DIR="${OUTPUT:-./out}"
 
+# Path to dot (graphviz)
+GRAPHVIZ="${GRAPHVIZ:-dot}"
+DOT_FILE=$OUTPUT_DIR/diagram.dot
+
+
 if ! command -v ${POIETIC} &> /dev/null
 then
-	echo "Poietic command '${TOOL}' not found. Set POIETIC environment variable with a valid executable path." 1>&2
+	echo "ERROR: Poietic command '${TOOL}' not found. Set POIETIC environment variable with a valid executable path." 1>&2
+    echo "HINT: If you built PoieticFlows, then the executable is likely '.build/debug/poietic' in PoieticFlows directory" 1>&2
+    echo "HINT: Try 'export POIETIC=../PoieticFlows/.build/debug/poietic' if the PoieticFlows is in the super directory relative to this one" 1>&2
 	exit 1
 fi
 
@@ -69,6 +77,9 @@ rm "${OUTPUT_DIR}/*.gnuplot" 2> /dev/null && echo "Removed previous gnuplots."
 # Path to the database.
 export POIETIC_DESIGN="${OUTPUT_DIR}/database.poietic"
 
+echo "Building and running ${FRAME_BUNDLE}"
+
+
 # Create a new empty database.
 ${POIETIC} new
 
@@ -78,8 +89,24 @@ ${POIETIC} import $FRAME_BUNDLE
 # Auto-connect parameter nodes.
 ${POIETIC} edit auto-parameters
 
+# Create graphviz output
+${POIETIC} write-dot \
+        --output ${DOT_FILE} \
+        -l formula \
+        -m "(other)"
+
 # Run the model and generate output into the ./out directory.
-${POIETIC} run --steps 150 -f gnuplot -o ${OUTPUT_DIR}
+${POIETIC} run -f gnuplot -o ${OUTPUT_DIR}
+
+if command -v ${GRAPHVIZ} &> /dev/null
+then
+    dot -Tpng -o${OUTPUT_DIR}/diagram.png ${DOT_FILE}
+    echo "Diagram image created in ${OUTPUT_DIR}/diagram.png"
+else
+    echo "WARNING: Graphviz tool 'dot' not found, diagram image not created." 1>&2
+    echo "HINT: Install package 'graphviz' using your system's package manager." 1>&2
+    echo "HINT: On a mac, run: brew install graphviz" 1>&2
+fi
 
 
 if command -v ${GNUPLOT} &> /dev/null
@@ -87,11 +114,12 @@ then
 	# Create charts using gnuplot.
 	cd ${OUTPUT_DIR}
 	gnuplot *.gnuplot
-	echo "Charts created in ${OUTPUT_DIR}"
+	echo "Chart images created in ${OUTPUT_DIR}"
 else
-	echo "NOTE: Gnuplot not found, chart images not created." 1>&2
-	echo "HINT: Install package 'gnupot' using your system's package manager." 1>&2
+	echo "WARNING: Gnuplot not found, chart images not created." 1>&2
+	echo "HINT: Install package 'gnuplot' using your system's package manager." 1>&2
 	echo "HINT: On a mac, run: brew install gnuplot" 1>&2
 fi
-echo "Output from$POI '${FRAME_BUNDLE}' created in ${OUTPUT_DIR}"
+
+echo "Output created in ${OUTPUT_DIR}"
 

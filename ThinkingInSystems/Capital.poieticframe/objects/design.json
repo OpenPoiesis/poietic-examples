@@ -4,11 +4,24 @@
         "attributes": {
             "title": "Economic capital with its reinforcing growth loop constrained by a renewable resource",
             "author": "Stefan Urbanek",
-            "license": "Creative Commons Attribution-ShareAlike 4.0 International License",
-            
-            "original_source": "Thinking in Systems, Figure 42-45",
-            "original_author": "Donella Meadows",
+            "license": "Creative Commons Attribution-ShareAlike 4.0 International License"
         }
     },
+    {
+        "type": "Simulation",
+        "attributes": {
+            "initial_time": 0.0,
+            "time_delta": 1.0,
+            "steps": 200
+        }
+    },
+    {
+        "type": "BibliographicalReference",
+        "attributes": {
+            "title": "Thinking in Systems",
+            "book_pages": "Figure 42-45",
+            "author": "Donella Meadows"
+        }
+    }
 
 ]

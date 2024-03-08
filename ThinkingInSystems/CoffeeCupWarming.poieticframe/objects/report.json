@@ -1,0 +1,14 @@
+[
+    {
+        "type": "Chart",
+        "name": "coffee_temperature_chart",
+        "attributes": {}
+    },
+    {
+        "type": "ChartSeries", "from": "coffee_temperature_chart", "to": "coffee_temperature"
+    },
+    
+    { "type": "Control", "name": "initial_coffee_temperature_control" },
+    { "type": "ValueBinding", "from": "initial_coffee_temperature_control", "to": "coffee_temperature" },
+
+]

@@ -1,0 +1,6 @@
+{
+    "frame_format_version": "2023.9",
+    "metamodel": "Flows",
+
+    "collections": [ "design", "objects", "report" ],
+}

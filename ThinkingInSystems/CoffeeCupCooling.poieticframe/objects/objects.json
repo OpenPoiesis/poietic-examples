@@ -1,0 +1,31 @@
+[
+    {
+        "type": "Auxiliary",
+        "name": "discrepancy",
+        "attributes": {
+            "formula": "coffee_temperature - room_temperature"
+        }
+    },
+    {
+        "type": "Auxiliary",
+        "name": "room_temperature",
+        "attributes": {
+            "formula": "18"
+        }
+    },
+    {
+        "type": "Stock",
+        "name": "coffee_temperature",
+        "attributes": {
+            "formula": "100"
+        }
+    },
+    {
+        "type": "Flow",
+        "name": "cooling",
+        "attributes": {
+            "formula": "discrepancy * 0.1"
+        },
+    },
+    { "type": "Drains", "from": "coffee_temperature", "to": "cooling" },
+]

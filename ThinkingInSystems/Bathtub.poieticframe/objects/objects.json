@@ -1,0 +1,25 @@
+[
+    {
+        "type": "Stock",
+        "name": "water_in_tub",
+        "attributes": {
+            "formula": "50"
+        }
+    },
+    {
+        "type": "Flow",
+        "name": "inflow",
+        "attributes": {
+            "formula": "if(time <= 5, 0, 5)"
+        },
+    },
+    { "type": "Fills",    "from": "inflow",     "to": "water_in_tub" },
+    {
+        "type": "Flow",
+        "name": "outflow",
+        "attributes": {
+            "formula": "5"
+        },
+    },
+    { "type": "Drains",     "from": "water_in_tub", "to": "outflow" }
+]

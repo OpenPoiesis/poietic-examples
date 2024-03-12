@@ -64,13 +64,11 @@ alias poietic="swift run poietic"
 export POIETIC_DESIGN="demo.poietic"
 
 # Create a new empty database.
-poietic new
-
-# Import a model frame into the database.
-poietic import ThinkingInSystems/Capital
-
-# Auto-connect parameter nodes.
-poietic edit auto-parameters
+#
+# This will create a new database by importing a frame and automatically
+# connecting parameters.
+#
+poietic new --import ThinkingInSystems/Capital.poieticframe --auto-parameters
 
 # Run the model and generate output into the ./out directory.
 poietic run --steps 150 -f gnuplot -o ./out

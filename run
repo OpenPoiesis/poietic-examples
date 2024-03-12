@@ -66,10 +66,6 @@ fi
 #
 # -----------------------------------------------------------------------------------
 
-# -----------------------------------------------------------------------------------
-# Prepare the database and run the example
-# -----------------------------------------------------------------------------------
-
 # Alias the poietic tool, if we do not have it in PATH
 mkdir -p "${OUTPUT_DIR}"
 rm "${OUTPUT_DIR}/*.gnuplot" 2> /dev/null && echo "Removed previous gnuplots."
@@ -77,17 +73,14 @@ rm "${OUTPUT_DIR}/*.gnuplot" 2> /dev/null && echo "Removed previous gnuplots."
 # Path to the database.
 export POIETIC_DESIGN="${OUTPUT_DIR}/database.poietic"
 
+# -----------------------------------------------------------------------------------
+# Prepare the database and run the example
+# -----------------------------------------------------------------------------------
+
 echo "Building and running ${FRAME_BUNDLE}"
 
-
 # Create a new empty database.
-${POIETIC} new
-
-# Import a model frame into the database.
-${POIETIC} import $FRAME_BUNDLE
-
-# Auto-connect parameter nodes.
-${POIETIC} edit auto-parameters
+${POIETIC} new --import $FRAME_BUNDLE --auto-parameters
 
 # Create graphviz output
 ${POIETIC} write-dot \

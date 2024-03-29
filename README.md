@@ -19,16 +19,15 @@ Make sure you have the `poietic` command-line tool from the
 Follow the installation instructions contained in the package.
 
 
-There are two ways to run and explore the demos: use a convenience
+There are two ways to run and explore the demos: use the included convenience
 `run` script or do it manually. Here are the methods described in more detail.
 
 ### Convenience script
 
-To run the demos you can use the included convenience `run` script.
-It requires the `poietic` tool executable to exist somewhere.
-Can be specified explicitly using the `POIETIC` environment variable.
+To run the demos you can use the included convenience `run` script in the
+same directory as this README file.
 
-Use the the `run` command type, for example:
+For example:
 
 ```bash
 ./run ThinkingInSystems/Capital.poieticframe

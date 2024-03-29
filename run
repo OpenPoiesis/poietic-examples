@@ -2,16 +2,31 @@
 #
 # Script to run the demo designs in this repository.
 #
-# Usage:
+# USAGE:
 #
-# ./run PATH_TO_POIETIC_FRAME
+#     ./run PATH_TO_POIETIC_FRAME
 #
-# Uses the following environment variables:
-# 
-# POIETIC - path to the poietic executable, if not found in PATH (required)
-# GNUPLOT - path to gnuplot (optional, used if installed)
-# GRAPHVIZ - path to dot graphviz tool (optional, used if installed)
-# OUTPUT - path to the output directory, default: ./out
+#
+# REQUIREMENTS
+#
+# Requires the following executables to be discoverable through your PATH:
+#
+#     poietic - the poietic command-line tool from the PoieticFlows package
+#
+# Other optional tools that will be used if installed:
+#
+#     gnuplot - tool to create charts
+#     dot     - graphviz command
+#
+# Environment variables used (optional):
+#
+#     OUTPUT - path to the output directory, default: ./out
+#
+#
+# STUDY:
+#
+# Search for capitalised word MAIN in this file to see how the poietic
+# command is being used. The rest is just convenience.
 #
 
 set -e
@@ -19,31 +34,16 @@ set -e
 # -----------------------------------------------------------------------------------
 # Some internal config, you might skip this to the next section ...
 
-# Path to the poietic tool.
-#
-# If this demo project directory share the same parent directory as the Poietic Core,
-# then make sure that the tool has been built and run this command using:
-#
-# POIETIC=../PoieticCore/.build/debug/poietic ./run PATH_TO_BUDNLE.poieticframe
-# 
-POIETIC="${POIETIC:-poietic}"
-
-# Path to gnuplot
-GNUPLOT="${GNUPLOT:-gnuplot}"
-
 # Path to the output directory, default ./out
 OUTPUT_DIR="${OUTPUT:-./out}"
-
-# Path to dot (graphviz)
-GRAPHVIZ="${GRAPHVIZ:-dot}"
 DOT_FILE=$OUTPUT_DIR/diagram.dot
 
 
-if ! command -v ${POIETIC} &> /dev/null
+if ! command -v poietic &> /dev/null
 then
-	echo "ERROR: Poietic command '${TOOL}' not found. Set POIETIC environment variable with a valid executable path." 1>&2
-    echo "HINT: If you built PoieticFlows, then the executable is likely '.build/debug/poietic' in PoieticFlows directory" 1>&2
-    echo "HINT: Try 'export POIETIC=../PoieticFlows/.build/debug/poietic' if the PoieticFlows is in the super directory relative to this one" 1>&2
+	echo "ERROR: Command 'poietic' not found." 1>&2
+    echo "HINT: Follow the installation instructions in the PoieticFlows package" 1>&2
+    echo "HINT: Make sure you have '~/.swiftpm/bin' in your PATH." 1>&2
 	exit 1
 fi
 
@@ -54,44 +54,40 @@ fi
 
 FRAME_BUNDLE=$1
 
-if [ ! -d "${FRAME_BUNDLE}" ] ; then
-	echo "${FRAME_BUNDLE} directory does not exist." 1>&2
-	exit 1
-fi
-
-if [ ! -f "${FRAME_BUNDLE}/info.json" ] ; then
-	echo "${FRAME_BUNDLE} does not seem to be a frame bundle (missing 'info.json')." 1>&2
-	exit 1
-fi
 #
 # -----------------------------------------------------------------------------------
-
-# Alias the poietic tool, if we do not have it in PATH
 mkdir -p "${OUTPUT_DIR}"
-rm "${OUTPUT_DIR}/*.gnuplot" 2> /dev/null && echo "Removed previous gnuplots."
 
 # Path to the database.
-export POIETIC_DESIGN="${OUTPUT_DIR}/database.poietic"
+export POIETIC_DESIGN="${OUTPUT_DIR}/design.poietic"
 
 # -----------------------------------------------------------------------------------
-# Prepare the database and run the example
+# MAIN: Prepare the database and run the example
 # -----------------------------------------------------------------------------------
+# BEGIN main
+#
 
 echo "Building and running ${FRAME_BUNDLE}"
 
 # Create a new empty database.
-${POIETIC} new --import $FRAME_BUNDLE --auto-parameters
+poietic new --import $FRAME_BUNDLE --auto-parameters
 
 # Create graphviz output
-${POIETIC} write-dot \
+poietic write-dot \
         --output ${DOT_FILE} \
-        -l formula \
+        -l name \
         -m "(other)"
 
 # Run the model and generate output into the ./out directory.
-${POIETIC} run -f gnuplot -o ${OUTPUT_DIR}
+poietic run --solver euler -f gnuplot -o ${OUTPUT_DIR}
 
-if command -v ${GRAPHVIZ} &> /dev/null
+# END main
+# -----------------------------------------------------------------------------------
+
+# Create graphviz diagram image.
+# -----------------------------------------------------------------------------------
+
+if command -v dot &> /dev/null
 then
     dot -Tpng -o${OUTPUT_DIR}/diagram.png ${DOT_FILE}
     echo "Diagram image created in ${OUTPUT_DIR}/diagram.png"
@@ -102,10 +98,16 @@ else
 fi
 
 
-if command -v ${GNUPLOT} &> /dev/null
+# Create charts using gnuplot.
+# -----------------------------------------------------------------------------------
+
+if command -v gnuplot &> /dev/null
 then
 	# Create charts using gnuplot.
 	cd ${OUTPUT_DIR}
+
+    rm "*.gnuplot" 2> /dev/null && echo "Removed previous gnuplots."
+
 	gnuplot *.gnuplot
 	echo "Chart images created in ${OUTPUT_DIR}"
 else

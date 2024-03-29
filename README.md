@@ -1,9 +1,9 @@
-# Poietic Demos
+# Poietic Examples
 
-Demo designs for the Poietic toolkit.
+Example models for the Poietic Flows toolkit.
 
 To play with the demos, you need the
-[Poietic Toolkit](https://github.com/OpenPoiesis/Poietic-swift).
+[Poietic Flows](https://github.com/OpenPoiesis/PoieticFlows) installed.
 
 
 ## Contents
@@ -14,70 +14,46 @@ To play with the demos, you need the
 
 ## Running the demos
 
-To run a demo, you need the [Poietic Toolkit](https://github.com/OpenPoiesis/PoieticCore).
+Make sure you have the `poietic` command-line tool from the
+[Poietic Flows](https://github.com/OpenPoiesis/PoieticFlows) package installed.
+Follow the installation instructions contained in the package.
 
-Please refer to a README file included with each folder for more details.
 
-To run the demos you can use the included `run` command. It requires the `poietic` tool
-executable to exist somewhere. Can be specified explicitly using the `POIETIC` environment
-variable.
+There are two ways to run and explore the demos: use a convenience
+`run` script or do it manually. Here are the methods described in more detail.
 
-To use the `run` command type, for example:
+### Convenience script
+
+To run the demos you can use the included convenience `run` script.
+It requires the `poietic` tool executable to exist somewhere.
+Can be specified explicitly using the `POIETIC` environment variable.
+
+Use the the `run` command type, for example:
 
 ```bash
 ./run ThinkingInSystems/Capital.poieticframe
 ```
 
-If this demo project directory share the same parent directory as the Poietic Core,
-then make sure that the tool has been built and then use the command like this::
+The command will create output in the `./out` directory with a CSV file
+containing the simulation result. 
 
-```bash
-export POIETIC=../PoieticCore/.build/debug/poietic
-./run ThinkingInSystems/Capital.poieticframe
-```
+Extras:
+
+- If you have [Gnuplot](http://gnuplot.info) installed, then
+  chart images will be generated.
+- If you have [Graphviz](https://graphviz.org) installed, then the model
+  diagram image will be created.
 
 ### Manual Method
 
-1. Chose a location of your database and store the path in `POIETIC_DESIGN` environment
-   variable with: `export POIETIC_DESIGN="demo.poietic"`
-2. Creating a new database: `poietic new`
-3. Importing the demo package: `poietic import PATH_TO_MODEL_FOLDER`
-4. Running the model: `poietic run`
+1. Create a new database: `poietic new`
+2. Importing the demo package: `poietic import Basic/Interest.poieticframe`
+3. To make sure all parameter connections are correct, for some packages you might need to run `poietic edit auto-parameters`.
+4. Run the simulation: `poietic run` and see the simulation results in the
+   standard output.
 
-### Example
-
-Requires [Gnuplot](http://gnuplot.info), on Mac can be installed using `brew install gnuplot`.
-
-Make sure that you have the `poietic` tool compiled, add it to your PATH or add it to the
-alias in the script below.
-
-This demo runs the `ThinkingInSystems/Capital` example and generates output in the `./out`
-directory where you can find `output.csv` with all the simulation states, `*.gnuplot` files
-containing instructions for plotting and `*.png` files with charts. The charts
-are defined within the model as `Chart` objects.
-
-```sh
-# Alias the poietic tool, if we do not have it in PATH
-alias poietic="swift run poietic"
-
-# Path to the database.
-export POIETIC_DESIGN="demo.poietic"
-
-# Create a new empty database.
-#
-# This will create a new database by importing a frame and automatically
-# connecting parameters.
-#
-poietic new --import ThinkingInSystems/Capital.poieticframe --auto-parameters
-
-# Run the model and generate output into the ./out directory.
-poietic run --steps 150 -f gnuplot -o ./out
-
-# Create charts using gnuplot.
-cd ./out
-gnuplot *.gnuplot
-
-```
+Explore the included `run` shell script or explore `poietic --help` and `--help`
+of its subcommands to learn more what can be done with the example models.
 
 
 ## Development Notes

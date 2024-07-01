@@ -70,7 +70,8 @@ export POIETIC_DESIGN="${OUTPUT_DIR}/design.poietic"
 echo "Building and running ${FRAME_BUNDLE}"
 
 # Create a new empty database.
-poietic new --import $FRAME_BUNDLE --auto-parameters
+poietic new --import $FRAME_BUNDLE ${POIETIC_DESIGN}
+poietic edit auto-parameters
 
 # Create graphviz output
 poietic write-dot \

@@ -2,8 +2,8 @@
 
 Example models for the Poietic Flows toolkit.
 
-To play with the demos, you need the
-[Poietic Flows](https://github.com/OpenPoiesis/PoieticFlows) installed.
+To play with the examples, you need the
+[Poietic Tool](https://github.com/OpenPoiesis/PoieticTool) installed.
 
 
 ## Contents
@@ -15,14 +15,14 @@ To play with the demos, you need the
 ## Running the demos
 
 Make sure you have the `poietic` command-line tool from the
-[Poietic Flows](https://github.com/OpenPoiesis/PoieticFlows) package installed.
+[Poietic Tool](https://github.com/OpenPoiesis/PoieticTool) package installed.
 Follow the installation instructions contained in the package.
 
 
 There are two ways to run and explore the demos: use the included convenience
 `run` script or do it manually. Here are the methods described in more detail.
 
-### Convenience script
+### Convenience Script
 
 To run the demos you can use the included convenience `run` script in the
 same directory as this README file.
@@ -34,14 +34,21 @@ For example:
 ```
 
 The command will create output in the `./out` directory with a CSV file
-containing the simulation result. 
+containing the simulation result. If you have the optional tools installed
+(see below), more content, including charts and diagrams, is generated.
 
-Extras:
+**Recommended**
 
-- If you have [Gnuplot](http://gnuplot.info) installed, then
-  chart images will be generated.
-- If you have [Graphviz](https://graphviz.org) installed, then the model
-  diagram image will be created.
+Install the following tools to have additional visual content generated.
+
+- [Gnuplot](http://gnuplot.info) – generate charts as PNG images.
+- [Graphviz](https://graphviz.org) – generate model diagram image.
+
+On MacOS with Homebrew use:
+
+```bash
+brew install gnuplot graphviz
+```
 
 ### Manual Method
 
@@ -54,6 +61,10 @@ Extras:
 Explore the included `run` shell script or explore `poietic --help` and `--help`
 of its subcommands to learn more what can be done with the example models.
 
+Experiment with the model by editing it. See the
+[poietic tool documentation](https://github.com/OpenPoiesis/PoieticTool/blob/main/Docs/Tool.md)
+for more details.
+
 
 ## Development Notes
 
@@ -65,6 +76,3 @@ derivatives, please be aware, that they might or might not work in the future.
 ## Author
 
 - [Stefan Urbanek](mailto:stefan.urbanek@gmail.com)
-
-
-

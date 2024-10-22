@@ -3,7 +3,7 @@
 Example models for the Poietic Flows toolkit.
 
 To play with the examples, you need the
-[Poietic Tool](https://github.com/OpenPoiesis/PoieticTool) installed.
+[Poietic Tool](https://github.com/OpenPoiesis/poietic-tool) installed.
 
 
 ## Contents
@@ -15,7 +15,7 @@ To play with the examples, you need the
 ## Running the demos
 
 Make sure you have the `poietic` command-line tool from the
-[Poietic Tool](https://github.com/OpenPoiesis/PoieticTool) package installed.
+[Poietic Tool](https://github.com/OpenPoiesis/poietic-tool) package installed.
 Follow the installation instructions contained in the package.
 
 
@@ -62,7 +62,7 @@ Explore the included `run` shell script or explore `poietic --help` and `--help`
 of its subcommands to learn more what can be done with the example models.
 
 Experiment with the model by editing it. See the
-[poietic tool documentation](https://github.com/OpenPoiesis/PoieticTool/blob/main/Docs/Tool.md)
+[poietic tool documentation](https://github.com/OpenPoiesis/poietic-tool/blob/main/Docs/Tool.md)
 for more details.
 
 

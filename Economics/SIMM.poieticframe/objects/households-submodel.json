@@ -1,0 +1,63 @@
+[
+    {
+        "type": "Stock",
+        "name": "household_deposits",
+        "attributes": {
+            "formula": "household_DCT * disposable_income",
+            "units": "USD"
+        }
+    },
+    {
+        "type": "Flow",
+        "name": "household_revenue",
+        "attributes": {
+            "formula": "disposable_income",
+            "units": "UDS/yr"
+        }
+    },
+    { "type": "Fills", "from": "household_revenue", "to": "household_deposits" },
+    {
+        "type": "Flow",
+        "name": "household_expenditures",
+        "attributes": {
+            "formula": "consumption",
+            "units": "UDS/yr"
+        }
+    },
+    { "type": "Drains", "from": "household_deposits", "to": "household_expenditures" },
+    {
+        "type": "Auxiliary",
+        "name": "disposable_income",
+        "attributes": {
+            "formula": "wages_and_dividends - taxes",
+            "units": "USD/yr"
+        }
+    },
+    {
+        "type": "Auxiliary",
+        "name": "taxes",
+        "attributes": {
+            "formula": "wages_and_dividends * tax_rate",
+            "units": "USD/yr"
+        }
+    },
+    {
+        "type": "Auxiliary",
+        "name": "consumption_inner",
+        "attributes": {
+            "formula": "household_deposits / household_DCT",
+            "units": "USD/yr"
+        }
+    },
+    { "type": "Smooth", "name": "consumption", "attributes": { "window_time": 0.25, } },
+    { "type": "Parameter", "from": "consumption_inner", "to": "consumption" },
+    {
+        "type": "Auxiliary",
+        "name": "household_DCT",
+        "attributes": {
+            "formula": "0.75",
+            "description": "deposit coverage target",
+            "units": "yr"
+        }
+    }
+]

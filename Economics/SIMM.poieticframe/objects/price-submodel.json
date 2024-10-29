@@ -1,0 +1,53 @@
+[
+    {
+        "type": "Stock",
+        "name": "price_index",
+        "attributes": {
+            "formula": "1.0",
+        }
+    },
+    {
+        "type": "Flow",
+        "name": "d_price_index",
+        "attributes": {
+            "formula": "(indicated_price - price_index) / PAT",
+            "units": "per year"
+        }
+    },
+    { "type": "Fills", "from": "d_price_index", "to": "price_index" },
+    
+    {
+        "type": "Auxiliary",
+        "name": "PAT",
+        "attributes": {
+            "formula": "1.0",
+            "description": "price adjustment time",
+            "units": "yr"
+        }
+    },
+
+    {
+        "type": "Auxiliary",
+        "name": "indicated_price",
+        "attributes": {
+            "formula": "price_index * power(capacity_utilization, CUelasticity)",
+        }
+    },
+    {
+        "type": "Auxiliary",
+        "name": "CUelasticity",
+        "attributes": {
+            "formula": "1.0",
+        }
+    },
+    {
+        "type": "Auxiliary",
+        "name": "inflation",
+        "attributes": {
+            "formula": "price_index",
+            "FIXME_formula": "100 * TREND(price_index, 1)",
+            "units": "per year"
+        }
+    },
+
+]

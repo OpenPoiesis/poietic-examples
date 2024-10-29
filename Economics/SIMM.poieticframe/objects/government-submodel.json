@@ -1,0 +1,62 @@
+[
+    {
+        "type": "Stock",
+        "name": "govt_deposits",
+        "attributes": {
+            "formula": "govt_DCT * taxes",
+            "units": "USD"
+        }
+    },
+    {
+        "type": "Flow",
+        "name": "government_revenue",
+        "attributes": {
+            "formula": "taxes",
+            "units": "UDS/yr"
+        }
+    },
+    { "type": "Fills", "from": "government_revenue", "to": "govt_deposits" },
+
+    {
+        "type": "Auxiliary",
+        "name": "tax_rate",
+        "attributes": {
+            "formula": "0.20",
+        }
+    },
+
+    {
+        "type": "Flow",
+        "name": "govt_expenditures",
+        "attributes": {
+            "formula": "govt_purchases",
+            "units": "UDS/yr"
+        }
+    },
+    { "type": "Drains", "from": "govt_deposits", "to": "govt_expenditures" },
+    {
+        "type": "Auxiliary",
+        "name": "govt_purchases_inner",
+        "attributes": {
+            "formula": "govt_deposits / govt_DCT",
+            "units": "USD/yr"
+        }
+    },
+    { "type": "Smooth", "name": "govt_purchases_smooth", "attributes": { "window_time": 0.25, } },
+    { "type": "Parameter", "from": "govt_purchases_inner", "to": "govt_purchases_smooth" },
+
+    { "type": "Auxiliary", "name": "govt_shock", "attributes": { "formula": "if(time < 1, 0, 400e9)" } },
+    { "type": "Auxiliary", "name": "govt_purchases", "attributes": { "formula": "govt_purchases_smooth + govt_shock" } },
+
+    {
+        "type": "Auxiliary",
+        "name": "govt_DCT",
+        "attributes": {
+            "formula": "0.25",
+            "description": "deposit coverage target",
+            "units": "yr"
+        }
+    }
+
+
+]

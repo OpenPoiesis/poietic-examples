@@ -1,0 +1,26 @@
+[
+    {
+        "type": "DesignInfo",
+        "attributes": {
+            "title": "SIMM - Highly Simplified Macroeconomic Model"
+        }
+    },
+    {
+        "type": "Simulation",
+        "attributes": {
+            "initial_time": 0.0,
+            "time_delta": 0.1,
+            "steps": 60
+        }
+    },
+    {
+        "type": "BibliographicalReference",
+        "attributes": {
+            "title": "Feedback Economics",
+            "book_pages": "11-39",
+            "author": "I. Davit Wheat, Marianna Oliskevych, and Alina Novik",
+            "url": "https://exchange.iseesystems.com/public/david-wheat/simm"
+        }
+    }
+
+]

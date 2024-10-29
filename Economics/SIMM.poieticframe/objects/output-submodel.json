@@ -1,0 +1,40 @@
+[
+    {
+        "type": "Auxiliary",
+        "name": "capacity_utilization",
+        "attributes": {
+            "formula": "(production_target / production_capacity)"
+        }
+    },
+
+    {
+        "type": "Stock",
+        "name": "production_capacity",
+        "attributes": {
+            "formula": "20e12",
+            "units": "USD/yr",
+            "allows_negative": true
+        }
+    },
+    {
+        "type": "Flow",
+        "name": "d_pc",
+        "attributes": {
+            "formula": "(capacity_target - production_capacity) / PCAT",
+            "units": "UDS/yr/yr"
+        }
+    },
+    { "type": "Fills", "from": "d_pc", "to": "production_capacity" },
+    
+    {
+        "type": "Auxiliary",
+        "name": "PCAT",
+        "attributes": {
+            "formula": "3.0",
+            "description": "production capacity adjustment time",
+            "units": "yr"
+        }
+    }
+
+
+]

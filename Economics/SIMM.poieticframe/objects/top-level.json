@@ -1,0 +1,39 @@
+[
+    {
+        "type": "Stock",
+        "name": "inventories",
+        "attributes": {
+            "formula": "2e12",
+            "units": "usd"
+        }
+    },
+    {
+        "type": "Flow",
+        "name": "real_gdp",
+        "attributes": {
+            "formula": "production_capacity * capacity_utilization",
+            "units": "USD/yr",
+        }
+    },
+    { "type": "Fills", "from": "real_gdp", "to": "inventories" },
+    {
+        "type": "Flow",
+        "name": "real_ad",
+        "attributes": {
+            "formula": "expected_ad / price_index",
+            "units": "USD/yr",
+            "note":"Formula should be: AD / price_index."
+        }
+    },
+    { "type": "Drains", "from": "inventories", "to": "real_ad" },
+    {
+        "type": "Auxiliary",
+        "name": "AD",
+        "attributes": {
+            "formula": "wages + investment",
+            "units": "USD/yr"
+        }
+    },
+
+]
+

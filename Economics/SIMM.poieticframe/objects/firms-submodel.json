@@ -1,0 +1,94 @@
+[
+    {
+        "type": "Stock",
+        "name": "firm_deposits",
+        "attributes": {
+            "formula": "5.0e12",
+            "units": "usd"
+        }
+    },
+    {
+        "type": "Flow",
+        "name": "income",
+        "attributes": {
+            "formula": "consumption + investment + govt_purchases",
+            "units": "UDS/yr"
+        }
+    },
+    { "type": "Fills", "from": "income", "to": "firm_deposits" },
+
+    {
+        "type": "Flow",
+        "name": "firms_expenditures",
+        "attributes": {
+            "formula": "operations + dividends",
+            "units": "UDS/yr"
+        }
+    },
+    { "type": "Drains", "from": "firm_deposits", "to": "firms_expenditures" },
+    {
+        "type": "Auxiliary",
+        "name": "operations",
+        "attributes": {
+            "formula": "wages + investment",
+            "units": "USD/yr"
+        }
+    },
+    {
+        "type": "Auxiliary",
+        "name": "wages",
+        "attributes": {
+            "formula": "real_gdp * labor_share * price_index",
+            "units": "USD/yr"
+        }
+    },
+    {
+        "type": "Auxiliary",
+        "name": "investment",
+        "attributes": {
+            "formula": "real_gdp * propensity_to_invest * price_index",
+            "units": "USD/yr"
+        }
+    },
+    {
+        "type": "Auxiliary",
+        "name": "dividends",
+        "attributes": {
+            "formula": "(firm_deposits / firms_DCT) - operations",
+            "units": "USD/yr"
+        }
+    },
+    {
+        "type": "Auxiliary",
+        "name": "firms_DCT",
+        "attributes": {
+            "formula": "0.25",
+            "description": "deposit coverage target",
+            "units": "years"
+        }
+    },
+    {
+        "type": "Auxiliary",
+        "name": "wages_and_dividends",
+        "attributes": {
+            "formula": "wages + dividends",
+            "units": "USD/yr"
+        }
+    },
+    {
+        "type": "Auxiliary",
+        "name": "propensity_to_invest",
+        "attributes": {
+            "formula": "0.15",
+        }
+    },
+    {
+        "type": "Auxiliary",
+        "name": "labor_share",
+        "attributes": {
+            "formula": "0.75",
+        }
+    }
+
+
+]

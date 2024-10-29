@@ -1,0 +1,16 @@
+{
+    "frame_format_version": "2023.9",
+    "metamodel": "Flows",
+
+    "collections": [
+        "main",
+        "top-level",
+        "target-submodel",
+        "output-submodel",
+        "price-submodel",
+        "firms-submodel",
+        "households-submodel",
+        "government-submodel",
+        "report"
+    ]
+}

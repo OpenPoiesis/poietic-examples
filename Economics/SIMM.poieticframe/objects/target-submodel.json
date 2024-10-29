@@ -1,0 +1,88 @@
+[
+    {
+        "type": "Auxiliary",
+        "name": "production_target",
+        "attributes": {
+            "formula": "expected_ad + inventory_adj_rate",
+            "units": "USD/yr"
+        }
+    },
+    {
+        "type": "Flow",
+        "name": "d_capacity_target",
+        "attributes": {
+            "formula": "(production_target - capacity_target)/CTAT",
+            "units": "UDS/yr/yr"
+        }
+    },
+    { "type": "Fills", "from": "d_capacity_target", "to": "capacity_target" },
+    {
+        "type": "Stock",
+        "name": "expected_ad",
+        "attributes": {
+            "formula": "20e12",
+            "units": "USD/yr"
+        }
+    },
+    {
+        "type": "Flow",
+        "name": "d_expected_ad",
+        "attributes": {
+            "formula": "(real_ad - expected_ad) / EADAT",
+            "units": "UDS/yr/yr"
+        }
+    },
+    { "type": "Fills", "from": "d_expected_ad", "to": "expected_ad" },
+    {
+        "type": "Auxiliary",
+        "name": "EADAT",
+        "attributes": {
+            "formula": "0.25",
+            "description": "expected AD adjustment time",
+            "units": "yr"
+        }
+    },
+    {
+        "type": "Auxiliary",
+        "name": "inventory_adj_rate",
+        "attributes": {
+            "formula": "(ICT * expected_ad - inventories) / IAT",
+            "units": "USD/yr"
+        }
+    },
+    {
+        "type": "Auxiliary",
+        "name": "ICT",
+        "attributes": {
+            "formula": "0.1",
+            "description": "inventories coverage target",
+            "units": "yr"
+        }
+    },
+    {
+        "type": "Auxiliary",
+        "name": "IAT",
+        "attributes": {
+            "formula": "1.0",
+            "description": "inventories adjustment time",
+            "units": "yr"
+        }
+    },
+    {
+        "type": "Stock",
+        "name": "capacity_target",
+        "attributes": {
+            "formula": "20e12",
+            "units": "USD"
+        }
+    },
+    {
+        "type": "Auxiliary",
+        "name": "CTAT",
+        "attributes": {
+            "formula": "1.0",
+            "description": "capacity target adjustment time",
+            "units": "yr"
+        }
+    }
+]

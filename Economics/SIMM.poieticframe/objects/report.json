@@ -1,0 +1,64 @@
+[
+    {
+        "type": "Chart",
+        "name": "real_gdp_chart",
+        "attributes": {}
+    },
+    {
+        "type": "ChartSeries", "from": "real_gdp_chart", "to": "real_gdp"
+    },
+    
+    {
+        "type": "Chart",
+        "name": "real_ad_chart",
+        "attributes": {}
+    },
+    {
+        "type": "ChartSeries", "from": "real_ad_chart", "to": "real_ad"
+    },
+    
+    
+    {
+        "type": "Chart",
+        "name": "household_deposits_chart",
+        "attributes": {}
+    },
+    {
+        "type": "ChartSeries", "from": "household_deposits_chart", "to": "household_deposits"
+    },
+    
+    {
+        "type": "Chart",
+        "name": "govt_deposits_chart",
+        "attributes": {}
+    },
+    {
+        "type": "ChartSeries", "from": "govt_deposits_chart", "to": "govt_deposits"
+    },
+    {
+        "type": "Chart",
+        "name": "firm_deposits_chart",
+        "attributes": {}
+    },
+    {
+        "type": "ChartSeries", "from": "firm_deposits_chart", "to": "firm_deposits"
+    },
+    
+    {
+        "type": "Chart",
+        "name": "production_capacity_chart",
+        "attributes": {}
+    },
+    {
+        "type": "ChartSeries", "from": "production_capacity_chart", "to": "production_capacity"
+    },
+
+    {
+        "type": "Chart",
+        "name": "price_index_chart",
+        "attributes": {}
+    },
+    {
+        "type": "ChartSeries", "from": "price_index_chart", "to": "price_index"
+    }
+]

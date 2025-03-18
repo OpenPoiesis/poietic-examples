@@ -7,19 +7,19 @@
         }
     },
     {
-        "type": "Flow",
+        "type": "FlowRate",
         "name": "inflow",
         "attributes": {
             "formula": "if(time <= 5, 0, 5)"
         },
     },
-    { "type": "Fills",    "from": "inflow",     "to": "water_in_tub" },
+    { "type": "Flow",    "from": "inflow",     "to": "water_in_tub" },
     {
-        "type": "Flow",
+        "type": "FlowRate",
         "name": "outflow",
         "attributes": {
             "formula": "5"
         },
     },
-    { "type": "Drains",     "from": "water_in_tub", "to": "outflow" }
+    { "type": "Flow",     "from": "water_in_tub", "to": "outflow" }
 ]

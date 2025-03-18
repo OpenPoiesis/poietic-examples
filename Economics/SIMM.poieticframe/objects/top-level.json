@@ -8,16 +8,16 @@
         }
     },
     {
-        "type": "Flow",
+        "type": "FlowRate",
         "name": "real_gdp",
         "attributes": {
             "formula": "production_capacity * capacity_utilization",
             "units": "USD/yr",
         }
     },
-    { "type": "Fills", "from": "real_gdp", "to": "inventories" },
+    { "type": "Flow", "from": "real_gdp", "to": "inventories" },
     {
-        "type": "Flow",
+        "type": "FlowRate",
         "name": "real_ad",
         "attributes": {
             "formula": "expected_ad / price_index",
@@ -25,7 +25,7 @@
             "note":"Formula should be: AD / price_index."
         }
     },
-    { "type": "Drains", "from": "inventories", "to": "real_ad" },
+    { "type": "Flow", "from": "inventories", "to": "real_ad" },
     {
         "type": "Auxiliary",
         "name": "AD",

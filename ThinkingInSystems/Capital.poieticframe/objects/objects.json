@@ -28,21 +28,21 @@
         }
     },
     {
-        "type": "Flow",
+        "type": "FlowRate",
         "name": "regeneration",
         "attributes": {
             "formula": "resource * regeneration_rate"
         },
     },
-    { "type": "Fills",     "from": "regeneration", "to": "resource" },
+    { "type": "Flow",     "from": "regeneration", "to": "resource" },
     {
-        "type": "Flow",
+        "type": "FlowRate",
         "name": "harvest",
         "attributes": {
             "formula": "capital * yield"
         },
     },
-    { "type": "Drains",    "from": "resource",     "to": "harvest" },
+    { "type": "Flow",    "from": "resource",     "to": "harvest" },
     {
         "type": "Stock",
         "name": "capital",
@@ -51,22 +51,22 @@
         }
     },
     {
-        "type": "Flow",
+        "type": "FlowRate",
         "name": "depreciation",
         "attributes": {
             "formula": "capital / capital_lifetime"
         }
     },
-    { "type": "Drains",    "from": "capital",     "to": "depreciation" },
+    { "type": "Flow",    "from": "capital",     "to": "depreciation" },
 
     {
-        "type": "Flow",
+        "type": "FlowRate",
         "name": "investment",
         "attributes": {
             "formula": "min(profit, growth_goal)"
         },
     },
-    { "type": "Fills",     "from": "investment",   "to": "capital" },
+    { "type": "Flow",     "from": "investment",   "to": "capital" },
     {
         "type": "GraphicalFunction",
         "name": "yield",

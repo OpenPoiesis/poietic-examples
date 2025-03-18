@@ -16,14 +16,14 @@
         }
     },
     {
-        "type": "Flow",
+        "type": "FlowRate",
         "name": "interest",
         "attributes": {
             "formula": "account * rate",
             "position": [200, 100]
         }
     },
-    { "type": "Fills",     "from": "interest", "to": "account" },
+    { "type": "Flow",      "from": "interest", "to": "account" },
     { "type": "Parameter", "from": "rate",     "to": "interest" },
     { "type": "Parameter", "from": "account",  "to": "interest" },
     
@@ -38,7 +38,7 @@
         "attributes": {
             "initial_time": 0.0,
             "time_delta": 1.0,
-            "steps": 20
+            "end_time": 20.0
         }
     }
 ]

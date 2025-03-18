@@ -8,14 +8,14 @@
         }
     },
     {
-        "type": "Flow",
+        "type": "FlowRate",
         "name": "government_revenue",
         "attributes": {
             "formula": "taxes",
             "units": "UDS/yr"
         }
     },
-    { "type": "Fills", "from": "government_revenue", "to": "govt_deposits" },
+    { "type": "Flow", "from": "government_revenue", "to": "govt_deposits" },
 
     {
         "type": "Auxiliary",
@@ -26,14 +26,14 @@
     },
 
     {
-        "type": "Flow",
+        "type": "FlowRate",
         "name": "govt_expenditures",
         "attributes": {
             "formula": "govt_purchases",
             "units": "UDS/yr"
         }
     },
-    { "type": "Drains", "from": "govt_deposits", "to": "govt_expenditures" },
+    { "type": "Flow", "from": "govt_deposits", "to": "govt_expenditures" },
     {
         "type": "Auxiliary",
         "name": "govt_purchases_inner",

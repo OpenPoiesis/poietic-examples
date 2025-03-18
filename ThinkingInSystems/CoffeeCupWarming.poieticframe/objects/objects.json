@@ -21,11 +21,11 @@
         }
     },
     {
-        "type": "Flow",
+        "type": "FlowRate",
         "name": "warming",
         "attributes": {
             "formula": "discrepancy * 0.1"
         },
     },
-    { "type": "Fills", "from": "warming", "to": "coffee_temperature" },
+    { "type": "Flow", "from": "warming", "to": "coffee_temperature" },
 ]

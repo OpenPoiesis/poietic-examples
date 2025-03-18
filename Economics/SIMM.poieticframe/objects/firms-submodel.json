@@ -8,24 +8,24 @@
         }
     },
     {
-        "type": "Flow",
+        "type": "FlowRate",
         "name": "income",
         "attributes": {
             "formula": "consumption + investment + govt_purchases",
             "units": "UDS/yr"
         }
     },
-    { "type": "Fills", "from": "income", "to": "firm_deposits" },
+    { "type": "Flow", "from": "income", "to": "firm_deposits" },
 
     {
-        "type": "Flow",
+        "type": "FlowRate",
         "name": "firms_expenditures",
         "attributes": {
             "formula": "operations + dividends",
             "units": "UDS/yr"
         }
     },
-    { "type": "Drains", "from": "firm_deposits", "to": "firms_expenditures" },
+    { "type": "Flow", "from": "firm_deposits", "to": "firms_expenditures" },
     {
         "type": "Auxiliary",
         "name": "operations",

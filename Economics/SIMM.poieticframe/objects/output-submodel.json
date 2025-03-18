@@ -17,14 +17,14 @@
         }
     },
     {
-        "type": "Flow",
+        "type": "FlowRate",
         "name": "d_pc",
         "attributes": {
             "formula": "(capacity_target - production_capacity) / PCAT",
             "units": "UDS/yr/yr"
         }
     },
-    { "type": "Fills", "from": "d_pc", "to": "production_capacity" },
+    { "type": "Flow", "from": "d_pc", "to": "production_capacity" },
     
     {
         "type": "Auxiliary",

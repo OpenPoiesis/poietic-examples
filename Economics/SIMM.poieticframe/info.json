@@ -1,5 +1,5 @@
 {
-    "frame_format_version": "2023.9",
+    "format_version": "0",
     "metamodel": "Flows",
 
     "collections": [

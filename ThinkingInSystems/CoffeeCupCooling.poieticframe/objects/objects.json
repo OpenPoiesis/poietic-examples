@@ -21,11 +21,11 @@
         }
     },
     {
-        "type": "Flow",
+        "type": "FlowRate",
         "name": "cooling",
         "attributes": {
             "formula": "discrepancy * 0.1"
         },
     },
-    { "type": "Drains", "from": "coffee_temperature", "to": "cooling" },
+    { "type": "Flow", "from": "coffee_temperature", "to": "cooling" },
 ]

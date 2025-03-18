@@ -8,14 +8,14 @@
         }
     },
     {
-        "type": "Flow",
+        "type": "FlowRate",
         "name": "d_capacity_target",
         "attributes": {
             "formula": "(production_target - capacity_target)/CTAT",
             "units": "UDS/yr/yr"
         }
     },
-    { "type": "Fills", "from": "d_capacity_target", "to": "capacity_target" },
+    { "type": "Flow", "from": "d_capacity_target", "to": "capacity_target" },
     {
         "type": "Stock",
         "name": "expected_ad",
@@ -25,14 +25,14 @@
         }
     },
     {
-        "type": "Flow",
+        "type": "FlowRate",
         "name": "d_expected_ad",
         "attributes": {
             "formula": "(real_ad - expected_ad) / EADAT",
             "units": "UDS/yr/yr"
         }
     },
-    { "type": "Fills", "from": "d_expected_ad", "to": "expected_ad" },
+    { "type": "Flow", "from": "d_expected_ad", "to": "expected_ad" },
     {
         "type": "Auxiliary",
         "name": "EADAT",

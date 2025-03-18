@@ -7,14 +7,14 @@
         }
     },
     {
-        "type": "Flow",
+        "type": "FlowRate",
         "name": "d_price_index",
         "attributes": {
             "formula": "(indicated_price - price_index) / PAT",
             "units": "per year"
         }
     },
-    { "type": "Fills", "from": "d_price_index", "to": "price_index" },
+    { "type": "Flow", "from": "d_price_index", "to": "price_index" },
     
     {
         "type": "Auxiliary",

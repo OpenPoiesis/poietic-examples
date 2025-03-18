@@ -10,7 +10,7 @@
         "attributes": {
             "initial_time": 0.0,
             "time_delta": 0.1,
-            "steps": 60
+            "end_time": 6.0
         }
     },
     {

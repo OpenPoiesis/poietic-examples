@@ -14,12 +14,12 @@
         }
     },
     {
-        "type": "Flow",
+        "type": "FlowRate",
         "name": "pour",
         "attributes": {
             "formula": "100"
         }
     },
-    { "type": "Fills",     "from": "pour", "to": "cup" },
-    { "type": "Drains",     "from": "kettle", "to": "pour" }
+    { "type": "Flow", "from": "pour", "to": "cup" },
+    { "type": "Flow", "from": "kettle", "to": "pour" }
 ]

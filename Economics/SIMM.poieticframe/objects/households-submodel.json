@@ -8,23 +8,23 @@
         }
     },
     {
-        "type": "Flow",
+        "type": "FlowRate",
         "name": "household_revenue",
         "attributes": {
             "formula": "disposable_income",
             "units": "UDS/yr"
         }
     },
-    { "type": "Fills", "from": "household_revenue", "to": "household_deposits" },
+    { "type": "Flow", "from": "household_revenue", "to": "household_deposits" },
     {
-        "type": "Flow",
+        "type": "FlowRate",
         "name": "household_expenditures",
         "attributes": {
             "formula": "consumption",
             "units": "UDS/yr"
         }
     },
-    { "type": "Drains", "from": "household_deposits", "to": "household_expenditures" },
+    { "type": "Flow", "from": "household_deposits", "to": "household_expenditures" },
     {
         "type": "Auxiliary",
         "name": "disposable_income",

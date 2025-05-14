@@ -1,0 +1,25 @@
+{
+    "format_version": "0.1",
+    "metamodel": "StockAndFlow",
+
+    "snapshots": [
+        { "type": "Stock", "id": "kettle", "attributes": { "formula": "1000" } },
+        { "type": "Stock", "id": "cup", "attributes": { "formula": "0" } },
+        { "type": "FlowRate", "id": "pour", "attributes": { "formula": "100" } },
+        { "type": "Flow", "origin": "pour", "target": "cup" },
+        { "type": "Flow", "origin": "kettle", "target": "pour" },
+
+        { "type": "Chart", "id": "kettle_chart", "attributes": {} },
+        { "type": "ChartSeries", "origin": "kettle_chart", "target": "kettle" },
+        { "type": "Chart", "id": "cup_chart", "attributes": {} },
+        { "type": "ChartSeries", "origin": "cup_chart", "target": "cup" },
+        {
+            "type": "DesignInfo",
+            "attributes": {
+                "title": "Tea kettle pouring tea",
+                "author": "Stefan Urbanek",
+                "license": "Creative Commons Attribution-ShareAlike 4.0 International License"
+            }
+        }
+    ]
+}

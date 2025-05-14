@@ -1,0 +1,21 @@
+{
+    "format_version": "0.1",
+    "metamodel": "StockAndFlow",
+    "snapshots": [
+        {
+            "type": "DesignInfo",
+            "attributes": {
+                "title": "Bank account interest",
+                "author": "Stefan Urbanek",
+                "license": "Creative Commons Attribution-ShareAlike 4.0 International License"
+            }
+        },
+        { "type": "Simulation", "attributes": { "initial_time": 0.0, "time_delta": 1.0, "end_time": 20.0 } },
+        { "type": "Stock", "id": "account", "attributes": { "formula": "100", "position": {"type": "point", "value": [100, 100] } } },
+        { "type": "Auxiliary", "id": "rate", "attributes": { "formula": "0.02", "position": {"type": "point", "value": [100, 200] } } },
+        { "type": "FlowRate", "id": "interest", "attributes": { "formula": "account * rate", "position": {"type": "point", "value": [200, 100] } } },
+        { "type": "Flow",      "origin": "interest", "target": "account" },
+        { "type": "Parameter", "origin": "rate",     "target": "interest" },
+        { "type": "Parameter", "origin": "account",  "target": "interest" }
+    ]
+}

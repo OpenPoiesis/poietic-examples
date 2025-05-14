@@ -1,6 +1,0 @@
-{
-    "format_version": "0",
-    "metamodel": "Flows",
-
-    "collections": [ "design", "objects", "report" ],
-}

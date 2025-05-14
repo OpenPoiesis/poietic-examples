@@ -1,7 +1,0 @@
-[
-    { "type": "Control", "name": "rate_control" },
-    { "type": "ValueBinding", "from": "rate_control", "to": "rate" },
-    
-    { "type": "Control", "name": "account_control" },
-    { "type": "ValueBinding", "from": "account_control", "to": "account" }
-]

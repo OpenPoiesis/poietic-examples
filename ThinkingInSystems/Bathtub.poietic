@@ -1,0 +1,70 @@
+{
+    "format_version": "0.1",
+    "metamodel": "StockAndFlow",
+
+    "snapshots": [
+        {
+            "type": "DesignInfo",
+            "attributes": {
+                "title": "Bathtub",
+                "author": "Stefan Urbanek",
+                "license": "Creative Commons Attribution-ShareAlike 4.0 International License"
+            }
+        },
+        {
+            "type": "Simulation",
+            "attributes": {
+                "initial_time": 0.0,
+                "time_delta": 1.0,
+                "end_time": 10
+            }
+        },
+        {
+            "type": "BibliographicalReference",
+            "attributes": {
+                "title": "Thinking in Systems",
+                "book_pages": "Figure 5, 6 and 7",
+                "author": "Donella Meadows"
+            }
+        },
+        {
+            "type": "Stock",
+            "id": "water_in_tub",
+            "attributes": {
+                "formula": "50"
+            }
+        },
+        {
+            "type": "FlowRate",
+            "id": "inflow",
+            "attributes": {
+                "formula": "if(time <= 5, 0, 5)"
+            }
+        },
+        { "type": "Flow",    "origin": "inflow",     "target": "water_in_tub" },
+        {
+            "type": "FlowRate",
+            "id": "outflow",
+            "attributes": {
+                "formula": "5"
+            }
+        },
+        { "type": "Flow",     "origin": "water_in_tub", "target": "outflow" },
+        {
+            "type": "Chart",
+            "id": "water_in_tub_chart",
+            "attributes": {}
+        },
+        {
+            "type": "ChartSeries", "origin": "water_in_tub_chart", "target": "water_in_tub"
+        },
+        {
+            "type": "Chart",
+            "id": "inflow_chart",
+            "attributes": {}
+        },
+        {
+            "type": "ChartSeries", "origin": "inflow_chart", "target": "inflow"
+        }
+    ]
+}

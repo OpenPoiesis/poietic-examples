@@ -1,0 +1,72 @@
+{
+    "format_version": "0.1",
+    "metamodel": "StockAndFlow",
+    
+    "snapshots": [
+        {
+            "type": "DesignInfo",
+            "attributes": {
+                "title": "A cup of coffee warming",
+                "author": "Stefan Urbanek",
+                "license": "Creative Commons Attribution-ShareAlike 4.0 International License"
+            }
+        },
+        {
+            "type": "Simulation",
+            "attributes": {
+                "initial_time": 0.0,
+                "time_delta": 0.1,
+                "end_time": 80
+            }
+        },
+        {
+            "type": "BibliographicalReference",
+            "attributes": {
+                "title": "Thinking in Systems",
+                "book_pages": "Figure 10, 11",
+                "author": "Donella Meadows"
+            }
+        },
+        {
+            "type": "Auxiliary",
+            "id": "discrepancy",
+            "attributes": {
+                "formula": "room_temperature - coffee_temperature"
+            }
+        },
+        {
+            "type": "Auxiliary",
+            "id": "room_temperature",
+            "attributes": {
+                "formula": "18"
+            }
+        },
+        {
+            "type": "Stock",
+            "id": "coffee_temperature",
+            "attributes": {
+                "formula": "0"
+            }
+        },
+        {
+            "type": "FlowRate",
+            "id": "warming",
+            "attributes": {
+                "formula": "discrepancy * 0.1"
+            },
+        },
+        { "type": "Flow", "origin": "warming", "target": "coffee_temperature" },
+        {
+            "type": "Chart",
+            "id": "coffee_temperature_chart",
+            "attributes": {}
+        },
+        {
+            "type": "ChartSeries", "origin": "coffee_temperature_chart", "target": "coffee_temperature"
+        },
+        
+        { "type": "Control", "id": "initial_coffee_temperature_control" },
+        { "type": "ValueBinding", "origin": "initial_coffee_temperature_control", "target": "coffee_temperature" },
+
+    ]
+}

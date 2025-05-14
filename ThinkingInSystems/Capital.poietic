@@ -1,0 +1,153 @@
+{
+    "format_version": "0.1",
+    "metamodel": "StockAndFlow",
+
+    "snapshots": [
+        {
+            "type": "DesignInfo",
+            "attributes": {
+                "title": "Economic capital with its reinforcing growth loop constrained by a renewable resource",
+                "author": "Stefan Urbanek",
+                "license": "Creative Commons Attribution-ShareAlike 4.0 International License"
+            }
+        },
+        {
+            "type": "Simulation",
+            "attributes": {
+                "initial_time": 0.0,
+                "time_delta": 1.0,
+                "end_time": 200.0
+            }
+        },
+        {
+            "type": "BibliographicalReference",
+            "attributes": {
+                "title": "Thinking in Systems",
+                "book_pages": "Figure 42-45",
+                "author": "Donella Meadows"
+            }
+        },
+        {
+            "type": "Auxiliary",
+            "id": "profit",
+            "attributes": {
+                "formula": "(price * harvest) - capital"
+            }
+        },
+        {
+            "type": "Auxiliary",
+            "id": "growth_goal",
+            "attributes": {
+                "formula": "capital * 0.1"
+            }
+        },
+        {
+            "type": "Auxiliary",
+            "id": "capital_lifetime",
+            "attributes": {
+                "formula": "20"
+            }
+        },
+        {
+            "type": "Stock",
+            "id": "resource",
+            "attributes": {
+                "formula": "1000"
+            }
+        },
+        {
+            "type": "FlowRate",
+            "id": "regeneration",
+            "attributes": {
+                "formula": "resource * regeneration_rate"
+            },
+        },
+        { "type": "Flow",     "origin": "regeneration", "target": "resource" },
+        {
+            "type": "FlowRate",
+            "id": "harvest",
+            "attributes": {
+                "formula": "capital * yield"
+            },
+        },
+        { "type": "Flow",    "origin": "resource",     "target": "harvest" },
+        {
+            "type": "Stock",
+            "id": "capital",
+            "attributes": {
+                "formula": "5"
+            }
+        },
+        {
+            "type": "FlowRate",
+            "id": "depreciation",
+            "attributes": {
+                "formula": "capital / capital_lifetime"
+            }
+        },
+        { "type": "Flow",    "origin": "capital",     "target": "depreciation" },
+
+        {
+            "type": "FlowRate",
+            "id": "investment",
+            "attributes": {
+                "formula": "min(profit, growth_goal)"
+            },
+        },
+        { "type": "Flow",     "origin": "investment",   "target": "capital" },
+        {
+            "type": "GraphicalFunction",
+            "id": "yield",
+            "attributes": {
+                "graphical_function_points": [[0,0.01],[50,0.01],[100,0.02],[150,0.03],[200,0.04],[250,0.06],[300,0.08],
+                    [350,0.12],[400,0.17],[450,0.23],[500,0.31],[550,0.40],[600,0.50],
+                    [650,0.60],[700,0.69],[750,0.77],[800,0.83],[850,0.88],[900,0.92],
+                    [950,0.94],[1000,0.96]]
+            }
+        },
+        { "type": "Parameter", "origin": "resource",     "target": "yield" },
+        {
+            "type": "GraphicalFunction",
+            "id": "price",
+            "attributes": {
+                "graphical_function_points": [[0,10.00],[0.1,7.12],[0.2,5.33],[0.3,4.14],[0.4,3.30],[0.5,2.70],[0.6,2.25],
+                    [0.7,1.90],[0.8,1.63],[0.9,1.41],[1,1.23]]
+            }
+        },
+        { "type": "Parameter", "origin": "yield",        "target": "price" },
+        {
+            "type": "GraphicalFunction",
+            "id": "regeneration_rate",
+            "attributes": {
+                "graphical_function_points": [[0,0.00],[50,0.01],[100,0.01],[150,0.03],[200,0.07],[250,0.12],[300,0.21],
+                    [350,0.30],[400,0.40],[450,0.47],[500,0.50],[550,0.47],[600,0.40],[650,0.30],
+                    [700,0.21],[750,0.12],[800,0.07],[850,0.03],[900,0.01],[950,0.01],[1000,0.00]]
+            }
+        },
+        { "type": "Parameter", "origin": "resource",     "target": "regeneration_rate" },
+        {
+            "type": "Chart",
+            "id": "harvest_chart",
+            "attributes": {}
+        },
+        {
+            "type": "ChartSeries", "origin": "harvest_chart", "target": "harvest"
+        },
+        {
+            "type": "Chart",
+            "id": "capital_chart",
+            "attributes": {}
+        },
+        {
+            "type": "ChartSeries", "origin": "capital_chart", "target": "capital"
+        },
+        {
+            "type": "Chart",
+            "id": "resource_chart",
+            "attributes": {}
+        },
+        {
+            "type": "ChartSeries", "origin": "resource_chart", "target": "resource"
+        }
+    ]
+}

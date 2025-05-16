@@ -1,0 +1,28 @@
+{
+    "format_version": "0.1",
+    "metamodel": "StockAndFlow",
+
+    "snapshots": [
+        { "type": "Auxiliary", "id": "step", "attributes": { "formula": "if(time < 10, 0, 10)" } },
+        { "type": "Smooth", "id": "smooth", "attributes": { "window_time": "10.0" } },
+        { "type": "Parameter", "origin": "step", "target": "smooth" },
+        { "type": "Smooth", "id": "smooth2", "attributes": { "window_time": "5.0" } },
+        { "type": "Parameter", "origin": "step", "target": "smooth2" },
+
+        { "type": "Chart", "id": "smooth_chart" },
+        { "type": "ChartSeries", "origin": "smooth_chart", "target": "smooth" },
+
+        { "type": "Chart", "id": "smooth_chart2" },
+        { "type": "ChartSeries", "origin": "smooth_chart2", "target": "smooth2" },
+        {
+            "type": "Simulation",
+            "attributes": {
+                "initial_time": 0.0,
+                "time_delta": 1.0,
+                "end_time": 50
+            }
+        }
+
+    ]
+}
+
